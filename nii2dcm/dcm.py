@@ -328,7 +328,7 @@ class DicomCT(Dicom):
         """
         Initialise subclass CIOD Modules
         """
-        self.add_module(MRImage())
+        self.add_module(CTImage())
 
         """
         DICOM Attributes to transfer from DICOM supplied using --ref_dicom CLI option
