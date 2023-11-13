@@ -85,7 +85,7 @@ Without this, a generic DICOM is created without complete imaging modality metad
 nii2dcm - NIfTI file to DICOM conversion
 
 positional arguments:
-  input_file or path    [.nii/.nii.gz] input NIfTI file or path
+  input_file            [.nii/.nii.gz] input NIfTI file or path
 
 options:
   -h, --help            show this help message and exit
