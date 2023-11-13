@@ -95,9 +95,9 @@ options:
                         [string] type of DICOM. e.g. MR, CT, US, XR, etc. (Default: MR)
   -rt, --rt_structure   [string] in the case of the input file is RT structure
   -p PATIENT_NAME, --patient_name PATIENT_NAME
-                        [string] Patient name will be in DICOM file (Default: input file name)
+                        [string] Patient name to be in DICOM file (Default: input file name)
   -pid PATIENT_ID, --patient_id PATIENT_ID
-                        [string] Patient ID will be in DICOM file (Default: input file name)
+                        [string] Patient ID to be in DICOM file (Default: input file name)
   -r REF_DICOM, --ref_dicom REF_DICOM
                         [.dcm] Reference DICOM file for Attribute transfer
   -v, --version         show program's version number and exit
