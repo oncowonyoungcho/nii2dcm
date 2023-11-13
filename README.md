@@ -6,7 +6,7 @@
 <br />
 <div align="center">
 
-<h1 align="center">nii2dcm</h1>
+<h1 align="center">nii2dcm - Extended</h1>
 
   <p align="center">
     NIfTI to DICOM file creation with Python
