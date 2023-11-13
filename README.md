@@ -70,7 +70,7 @@ nii2dcm -h
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-nii2dcm is designed to be pointed at a single `.nii` or `.nii.gz` or a single `directory` from which it generates a single-frame DICOM dataset. 
+nii2dcm is designed to be pointed at a single `.nii`/`.nii.gz` or a single `directory` from which it generates a single-frame DICOM dataset. 
 
 It is **recommended** to specify the output DICOM modality using the `-d` or `--dicom-type` flag (see examples below). 
 Without this, a generic DICOM is created without complete imaging modality metadata.
