@@ -40,7 +40,7 @@ Researchers often convert DICOM files to NIfTI files using tools such as
 **nii2dcm** is designed to convert a NIfTI file (.nii/.nii.gz) into a single-frame DICOM Series in one line, e.g.:
 
 ```sh
-nii2dcm nifti-file.nii.gz dicom-output-directory/ --dicom-type MR
+nii2dcm nifti-file.nii.gz -o dicom-output-directory --dicom-type MR
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
