@@ -80,20 +80,51 @@ nii2dcm is designed to be pointed at a single `.nii` or `.nii.gz` from which it 
 It is **recommended** to specify the output DICOM modality using the `-d` or `--dicom-type` flag (see examples below). 
 Without this, a generic DICOM is created without complete imaging modality metadata.
 
+### 
+```sh
+nii2dcm - NIfTI file to DICOM conversion
+
+positional arguments:
+  input_file or path    [.nii/.nii.gz] input NIfTI file or path
+
+options:
+  -h, --help            show this help message and exit
+  -o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        [directory] output DICOM path
+  -d DICOM_TYPE, --dicom_type DICOM_TYPE
+                        [string] type of DICOM. e.g. MR, CT, US, XR, etc. (Default: MR)
+  -rt, --rt_structure   [string] in the case of the input file is RT structure
+  -p PATIENT_NAME, --patient_name PATIENT_NAME
+                        [string] Patient name will be in DICOM file (Default: input file name)
+  -pid PATIENT_ID, --patient_id PATIENT_ID
+                        [string] Patient ID will be in DICOM file (Default: input file name)
+  -r REF_DICOM, --ref_dicom REF_DICOM
+                        [.dcm] Reference DICOM file for Attribute transfer
+  -v, --version         show program's version number and exit
+```
+
 ### DicomMRI (default)
 Create an MRI 2D multi-slice DICOM dataset:
 ```sh
-nii2dcm nifti-file.nii.gz dicom-output-directory -d MR
+nii2dcm nifti-file.nii.gz -o dicom-output-directory -d MR
+```
 or
-nii2dcm nifti-file.nii.gz dicom-output-directory
+```sh
+nii2dcm nifti-file.nii.gz -o dicom-output-directory
+```
 or
-nii2dcm nifti-file.nii.gz # DICOM will be created in "nifti-file" directory.
+```sh
+nii2dcm nifti-file.nii.gz # nifti-file.nii.gz will be converted to "nifti-file" directory.
+```
+or
+```sh
+nii2dcm nifti-file-directory
 ```
 
 ### DicomCT
 Create an MRI 2D multi-slice DICOM dataset:
 ```sh
-nii2dcm nifti-file.nii.gz dicom-output-directory -d CT
+nii2dcm nifti-file.nii.gz -o dicom-output-directory -d CT
 or
 nii2dcm nifti-file.nii.gz -d CT
 ```
