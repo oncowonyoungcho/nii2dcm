@@ -14,13 +14,6 @@
     <a href="https://github.com/tomaroberts/nii2dcm"><strong>Original Version » https://github.com/tomaroberts/nii2dcm</strong></a>
     <br /> - <br />
     <a href="https://github.com/oncowonyoungcho/nii2dcm"><strong>Extended Version » https://github.com/oncowonyoungcho/nii2dcm</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/oncowonyoungcho/nii2dcm">View Repo</a>
-    ·
-    <a href="https://github.com/oncowonyoungcho/nii2dcm/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/oncowonyoungcho/nii2dcm/issues">Request Feature</a>
   </p>
 </div>
 
