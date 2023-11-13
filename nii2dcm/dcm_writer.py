@@ -4,9 +4,10 @@ creates a DICOM Series
 
 import os
 import pydicom as pyd
+from scipy.ndimage import rotate
 
 
-def write_slice(dcm, img_data, instance_index, output_dir):
+def write_slice(dcm, img_data, instance_index, output_dir, output_name, patient_name, rtstructure):
     """
     write a single DICOM slice
 
@@ -16,21 +17,35 @@ def write_slice(dcm, img_data, instance_index, output_dir):
     output_dir – output DICOM file save location
     """
 
-    output_filename = r'IM_%04d.dcm' % (instance_index + 1)  # begin filename from 1, e.g. IM_0001.dcm
+    output_filename = f'{output_name}_{instance_index+1:04d}.dcm' # begin filename from 1, e.g. IM_0001.dcm
 
-    img_slice = img_data[:, :, instance_index]
+    
+    if len(img_data.shape) > 3:
+        img_slice = img_data[:, :, instance_index,0]
+    else:
+        img_slice = img_data[:, :, instance_index]
 
     # Instance UID – unique to current slice
     dcm.ds.SOPInstanceUID = pyd.uid.generate_uid(None)
+
 
     # write pixel data
     dcm.ds.PixelData = img_slice.tobytes()
 
     # write DICOM file
+    dcm.ds.PatientName = patient_name
+    dcm.ds.PatientID = output_name
+
+    if rtstructure:
+        dcm.ds.Modality = 'RTSTRUCT'
+        dcm.ds.SOPClassUID = '1.2.840.10008.5.1.4.1.1.481.3'
+        dcm.ds.SOPInstanceUID = '1.2.410.200113.1.963357531907.20231031143352369568.2784'
+        dcm.ds.SeriesInstanceUID = '1.2.410.200113.1.963357531907.20231031143352369568.2784.1'
+        output_filename = 'rt_'+output_filename
     dcm.ds.save_as(os.path.join(output_dir, output_filename), write_like_original=False)
 
 
-def transfer_nii_hdr_series_tags(dcm, nii2dcm_parameters):
+def transfer_nii_hdr_series_tags(dcm, nii2dcm_parameters,dicom_type):
     """
     Transfer NIfTI header parameters applicable across Series
 
@@ -50,8 +65,12 @@ def transfer_nii_hdr_series_tags(dcm, nii2dcm_parameters):
     dcm.ds.LargestImagePixelValue = int(nii2dcm_parameters['LargestImagePixelValue'])
     dcm.ds.WindowCenter = nii2dcm_parameters['WindowCenter']
     dcm.ds.WindowWidth = nii2dcm_parameters['WindowWidth']
-    dcm.ds.RescaleIntercept = nii2dcm_parameters['RescaleIntercept']
     dcm.ds.RescaleSlope = nii2dcm_parameters['RescaleSlope']
+    dcm.ds.RescaleIntercept = nii2dcm_parameters['RescaleIntercept']
+    if dicom_type == 'CT':
+        dcm.ds.RescaleType = 'HU'
+        dcm.ds.PixelRepresentation = 1
+        dcm.ds.HighBit = 16
 
 
 def transfer_nii_hdr_instance_tags(dcm, nii2dcm_parameters, instance_index):

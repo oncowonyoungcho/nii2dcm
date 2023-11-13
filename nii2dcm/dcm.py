@@ -24,6 +24,7 @@ from nii2dcm.modules.general_reference import GeneralReference
 from nii2dcm.modules.image_plane import ImagePlane
 from nii2dcm.modules.image_pixel import ImagePixel
 from nii2dcm.modules.mr_image import MRImage
+from nii2dcm.modules.ct_image import CTImage
 from nii2dcm.modules.sop_common import SOPCommon
 from nii2dcm.modules.common_instance_reference import CommonInstanceReference
 from nii2dcm.modules.voi_lut import VOILUT
@@ -59,12 +60,12 @@ class Dicom:
         self.ds.is_implicit_VR = False
         self.ds.is_little_endian = True
         self.ds.ImageType = ['DERIVED', 'SECONDARY']
-
+        
         """
         Initialise Composite IOD by adding Modules to Dicom object
         """
         self.add_base_modules()
-
+        
         """
         Set Dicom Date/Time
         Important: doing this once sets all Instances/Series/Study creation dates and times to the same values. Whereas, 
@@ -137,6 +138,7 @@ class Dicom:
         modalities assumed to have similar composition. Modules unique to a specific imaging modality are added within
         the respective subclass. e.g. MR Image Module is added within the nii2dcm DicomMRI class
         """
+
         self.add_module(Patient())
         self.add_module(GeneralStudy())
         self.add_module(PatientStudy())
@@ -204,7 +206,6 @@ class DicomMRI(Dicom):
     - Sets appropriate SOPClass UIDs for MR
     - Adds MR Image Module to Dicom object
     """
-
     def __init__(self, filename=nii2dcm_temp_filename):
         super().__init__(filename)
 
@@ -289,6 +290,120 @@ class DicomMRI(Dicom):
             'FlipAngle',
             'SAR',
             'PatientPosition',
+
+            # General Study Module Attributes
+            'StudyInstanceUID',  # Important: enables new DICOM to be filed in original Study
+            'StudyID',
+            'AcquisitionNumber',  # include or set in Dicom subclass?
+            'FrameOfReferenceUID',  # include?
+            'NumberOfTemporalPositions',
+            'ConversionSourceAttributesSequence',  # SQ Sequence
+            'RequestAttributesSequence',  # SQ Sequence
+            'RequestingPhysician',
+            'RequestingService',
+        ]
+
+class DicomCT(Dicom):
+    """
+    DicomCT subclass
+    - Sets appropriate SOPClass UIDs for MR
+    - Adds MR Image Module to Dicom object
+    """
+    def __init__(self, filename=nii2dcm_temp_filename):
+        super().__init__(filename)
+
+        """
+        Set DICOM attributes which are located outside of the CT Image Module to CT-specific values 
+        """
+        self.ds.Modality  = 'CT'
+        self.ds.scl_slope = '1'
+        self.ds.scl_inter = '0'
+        
+        # MR Image Storage SOP Class
+        # UID = 1.2.840.10008.5.1.4.1.1.2
+        # https://dicom.nema.org/dicom/2013/output/chtml/part04/sect_I.4.html
+        #self.file_meta.MediaStorageSOPClassUID = '1.2.840.10008.5.1.4.1.1.2'
+        self.ds.SOPClassUID = '1.2.840.10008.5.1.4.1.1.2'
+
+        """
+        Initialise subclass CIOD Modules
+        """
+        self.add_module(MRImage())
+
+        """
+        DICOM Attributes to transfer from DICOM supplied using --ref_dicom CLI option
+        """
+        # TODO(tomaroberts) figure out whether transfer SQ Sequence blocks, e.g.:
+        #  ProcedureCodeSequence,
+        #  ReferencedStudySequence,
+        #  ConversionSourceAttributesSequence
+        #  - conflicts if _included_?
+
+        self.attributes_to_transfer = [
+            'StudyDate',
+            'SeriesDate',  # TODO omit so SeriesDate = when DICOM created, not acquired? Consistent with SeriesTime
+            'AcquisitionDate',
+            'AccessionNumber',
+            'InstitutionName',
+            'InstitutionAddress',
+            'ReferringPhysicianName',
+            'StationName',
+            'StudyDescription',
+            'ProcedureCodeSequence',  # SQ Sequence
+            'InstitutionalDepartmentName',
+            'PerformingPhysicianName',
+            'OperatorsName',
+            'ManufacturerModelName',
+            'ReferencedStudySequence',  # SQ Sequence
+            'RelatedSeriesSequence',  # SQ Sequence
+
+            'PatientName',
+            'PatientID',
+            'PatientBirthDate',
+            'PatientSex',
+            'PatientAge',
+            'PatientSize',
+            'PatientWeight',
+            'BodyPartExamined',
+
+            # MR Image Module Attributes
+            'KVP',
+            'AcquisitionNumber',
+            'ScanOptions',
+            'DataCollectionDiameter',
+            'DataCollectionCenterPatient',
+            'ReconstructionDiameter',
+            'ReconstructionTargetCenterPatient',
+            'DistanceSourcetoDetector',
+            'DistanceSourcetoPatient',
+            'GantryDetectorTilt',
+            'TableHeight',
+            'RotationDirection',
+            'ExposureTime',
+            'XRayTubeCurrent',
+            'Exposure',
+            'ExposureinµAs',
+            'FilterType',
+            'GeneratorPower',
+            'FocalSpots',
+            'ConvolutionKernel',
+            'RevolutionTime',
+            'SingleCollimationWidth',
+            'TotalCollimationWidth',
+            'TableSpeed',
+            'TableFeedperRotation',
+            'SpiralPitchFactor',
+            'ExposureModulationType',
+            'EstimatedDoseSaving',
+            'CTDIvol',
+            'CTDIPhantomTypeCodeSequence',
+            'WaterEquivalentDiameter',
+            'WaterEquivalentDiameterCalculationMethodCodeSequence',
+            'ImageandFluoroscopyAreaDoseProduct',
+            'CalciumScoringMassFactorPatient',
+            'CalciumScoringMassFactorDevice',
+            'EnergyWeightingFactor',
+            'CTAdditionalXRaySourceSequence',
 
             # General Study Module Attributes
             'StudyInstanceUID',  # Important: enables new DICOM to be filed in original Study

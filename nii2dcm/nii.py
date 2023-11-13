@@ -25,13 +25,18 @@ class Nifti:
 
         # load nifti
         nii_img = nib_nii.get_fdata()
-
+        print('-'*52)
+        print('Dimension\t',':',nib_nii.header['dim'])
+        print('Pixel dimension\t',':',nib_nii.header['pixdim'])
+        print('Image shape\t',':',nib_nii.shape)
+        print('-'*52)
         # volume dimensions
-        if nib_nii.header['dim'][4] == 1:
-            nX, nY, nZ, nF = nib_nii.header['dim'][1], nib_nii.header['dim'][2], nib_nii.header['dim'][3], 1
-            dimX, dimY, dimZ = nib_nii.header['pixdim'][1], nib_nii.header['pixdim'][2], nib_nii.header['pixdim'][3]
+        # if nib_nii.header['dim'][4] == 1:
+        nX, nY, nZ, nF = nib_nii.header['dim'][1], nib_nii.header['dim'][2], nib_nii.header['dim'][3], 1
+        dimX, dimY, dimZ = nib_nii.header['pixdim'][1], nib_nii.header['pixdim'][2], nib_nii.header['pixdim'][3]
 
-        elif nib_nii.header['dim'][4] > 1:
+        if nib_nii.header['dim'][4] > 1:
+            nii_img = nib_nii.get_fdata()[:,:,:,0]
             print("Warning: Nifti is not 3-dimensional.")
 
         # Instances & Slice Spacing
@@ -46,8 +51,8 @@ class Nifti:
         minI = np.amin(nii_img)
         windowCenter = round((maxI - minI) / 2)
         windowWidth = round(maxI - minI)
-        rescaleIntercept = 0
         rescaleSlope = 1
+        rescaleIntercept = 0
 
         # FOV
         fovX = nX * dimX

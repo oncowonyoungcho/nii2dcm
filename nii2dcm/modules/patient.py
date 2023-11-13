@@ -14,7 +14,6 @@ class Patient(Module):
         super().__init__()
 
         self.module_type = 'PatientModule'
-
         self.ds.PatientName = 'Lastname^Firstname'
         self.ds.PatientID = '12345678'
         self.ds.PatientSex = ''

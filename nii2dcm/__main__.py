@@ -21,24 +21,26 @@ def cli(args=None):
         description="nii2dcm - NIfTI file to DICOM conversion"
     )
 
-    parser.add_argument("input_file", type=str, help="[.nii/.nii.gz] input NIfTI file")
-    parser.add_argument("output_dir", type=str, help="[directory] output DICOM path")
-    parser.add_argument("-d", "--dicom_type", type=str, help="[string] type of DICOM. e.g. MR, CT, US, XR, etc.")
+    parser.add_argument("input_file", type=str, help="[.nii/.nii.gz] input NIfTI file or path")
+    parser.add_argument("-o","--output_dir", type=str, help="[directory] output DICOM path")
+    parser.add_argument("-d", "--dicom_type", type=str, default='MR',help="[string] type of DICOM. e.g. MR, CT, US, XR, etc. (Default: MR)")
+    parser.add_argument("-rt", "--rt_structure", action='store_true', help="[string] in the case of the input file is RT structure")
+    parser.add_argument("-p", "--patient_name", type=str, help="[string] Patient name will be in DICOM file (Default: input file name)")
+    parser.add_argument("-pid", "--patient_id", type=str, help="[string] Patient ID will be in DICOM file (Default: input file name)")
     parser.add_argument("-r", "--ref_dicom", type=str, help="[.dcm] Reference DICOM file for Attribute transfer")
     parser.add_argument("-v", "--version", action="version", version=__version__)
 
     args = parser.parse_args()
 
     input_file = Path(args.input_file)  # TODO: add check that file is .nii/.nii.gz
-    output_dir = Path(args.output_dir)  # TODO: add check that this is directory
 
-    if not input_file.exists():
-        print(f"Input file '{input_file}' not found")
-        raise SystemExit(1)
-
-    if not output_dir.exists():
-        print(f"Output directory '{output_dir}' does not exist")
-        raise SystemExit(1)
+    if input_file.is_dir():
+        input_files = list(input_file.glob('*.nii.gz'))
+    elif input_file.is_file():
+        input_files = [input_file]
+        if not input_file.exists():
+            print(f"Input file '{input_file}' not found")
+            raise SystemExit(1)
 
     # Coding of optional file checks below is quite verbose
     if args.dicom_type is not None:
@@ -51,13 +53,28 @@ def cli(args=None):
     elif args.ref_dicom is None:
         ref_dicom_file = None
 
+     
     # execute nii2dcm
-    run_nii2dcm(
-        input_file,
-        output_dir,
-        dicom_type,
-        ref_dicom_file
-    )
+    for fname in input_files:
+        if not args.output_dir:
+            output_dir = Path(str(fname).split('.nii')[0])
+            output_dir.mkdir(parents=True, exist_ok=True)
+        else:
+            output_dir = Path(args.output_dir)
+            
+        if args.patient_name:
+            patient_name = args.patient_name.split('.nii')[0]
+        else:
+            patient_name = output_dir.stem.split('.nii')[0]
+
+        run_nii2dcm(
+            fname,
+            output_dir,
+            patient_name,
+            dicom_type,
+            ref_dicom_file,
+            args.rt_structure
+        )
 
 
 if __name__ == "__main__":
