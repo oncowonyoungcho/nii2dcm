@@ -48,20 +48,13 @@ nii2dcm nifti-file.nii.gz dicom-output-directory/ --dicom-type MR
 ## Installation
 
 To install and run nii2dcm locally, you have two options:
-- pip
 - build from source
-
-### pip
-
-```shell
-pip install nii2dcm
-```
 
 ### build from source
 
 Clone this repo:
 ```sh
-git clone https://github.com/tomaroberts/nii2dcm.git
+git clone https://github.com/oncowonyoungcho/nii2dcm.git
 ```
 
 Setup a Python virtual environment (recommended):
@@ -96,10 +89,16 @@ nii2dcm is designed to be pointed at a single `.nii` or `.nii.gz` from which it 
 It is **recommended** to specify the output DICOM modality using the `-d` or `--dicom-type` flag (see examples below). 
 Without this, a generic DICOM is created without complete imaging modality metadata.
 
-### DicomMRI
+### DicomMRI (default)
 Create an MRI 2D multi-slice DICOM dataset:
 ```sh
 nii2dcm nifti-file.nii.gz dicom-output-directory/ -d MR
+```
+
+### DicomCT
+Create an MRI 2D multi-slice DICOM dataset:
+```sh
+nii2dcm nifti-file.nii.gz dicom-output-directory/ -d CT
 ```
 
 ### DicomMRISVR
