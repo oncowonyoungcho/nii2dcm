@@ -87,7 +87,7 @@ options:
   -o OUTPUT_DIR, --output_dir OUTPUT_DIR
                         [directory] output DICOM path
   -d DICOM_TYPE, --dicom_type DICOM_TYPE
-                        [string] type of DICOM. e.g. MR, CT, US, XR, etc. (Default: MR)
+                        [string] type of DICOM. e.g. MR, CT, MRI with SVR. (Default: MR)
   -rt, --rt_structure   [string] in the case of the input file is RT structure
   -p PATIENT_NAME, --patient_name PATIENT_NAME
                         [string] Patient name to be in DICOM file (Default: input file name)
