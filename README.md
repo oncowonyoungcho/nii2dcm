@@ -125,7 +125,10 @@ or
 ```sh
 nii2dcm nifti-file.nii.gz -d CT
 ```
-
+or
+```sh
+nii2dcm nifti-file-directory -d CT
+```
 ### DicomMRISVR
 Create an MRI 3D [SVR](https://svrtk.github.io/) DICOM dataset:
 ```sh
