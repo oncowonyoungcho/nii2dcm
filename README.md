@@ -13,7 +13,7 @@
     <br />
     <a href="https://github.com/tomaroberts/nii2dcm"><strong>Original Version »</strong></a>
     <br /> / <br />
-    <a href="https://github.com/oncowonyoungcho/nii2dcm"><strong>Modified Version »</strong></a>
+    <a href="https://github.com/oncowonyoungcho/nii2dcm"><strong>Extended Version »</strong></a>
     <br />
     <br />
     <a href="https://github.com/oncowonyoungcho/nii2dcm">View Repo</a>
