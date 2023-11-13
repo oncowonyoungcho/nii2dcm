@@ -25,8 +25,8 @@ def cli(args=None):
     parser.add_argument("-o","--output_dir", type=str, help="[directory] output DICOM path")
     parser.add_argument("-d", "--dicom_type", type=str, default='MR',help="[string] type of DICOM. e.g. MR, CT, US, XR, etc. (Default: MR)")
     parser.add_argument("-rt", "--rt_structure", action='store_true', help="[string] in the case of the input file is RT structure")
-    parser.add_argument("-p", "--patient_name", type=str, help="[string] Patient name will be in DICOM file (Default: input file name)")
-    parser.add_argument("-pid", "--patient_id", type=str, help="[string] Patient ID will be in DICOM file (Default: input file name)")
+    parser.add_argument("-p", "--patient_name", type=str, help="[string] Patient name to be in DICOM file (Default: input file name)")
+    parser.add_argument("-pid", "--patient_id", type=str, help="[string] Patient ID to be in DICOM file (Default: input file name)")
     parser.add_argument("-r", "--ref_dicom", type=str, help="[.dcm] Reference DICOM file for Attribute transfer")
     parser.add_argument("-v", "--version", action="version", version=__version__)
 
