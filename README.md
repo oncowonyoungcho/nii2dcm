@@ -120,7 +120,9 @@ nii2dcm nifti-file-directory
 Create an MRI 2D multi-slice DICOM dataset:
 ```sh
 nii2dcm nifti-file.nii.gz -o dicom-output-directory -d CT
+```
 or
+```sh
 nii2dcm nifti-file.nii.gz -d CT
 ```
 
