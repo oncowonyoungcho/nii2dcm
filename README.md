@@ -157,7 +157,7 @@ The `-r` or `--ref-dicom` flag attempts to transfer common DICOM attributes from
 output DICOM:
 
 ```shell
-nii2dcm nifti-file.nii.gz dicom-output-directory/ -d MR -r reference-dicom-file.dcm
+nii2dcm nifti-file.nii.gz -o dicom-output-directory -d MR -r reference-dicom-file.dcm
 ```
 
 Currently, attributes to transfer are [listed here in the DicomMRI class](https://github.com/tomaroberts/nii2dcm/blob/b03b4aacce25eeb6a00756bdb47365034dced787/nii2dcm/dcm.py#L236).
