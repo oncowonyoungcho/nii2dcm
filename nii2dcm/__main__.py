@@ -21,7 +21,7 @@ def cli(args=None):
         description="nii2dcm - NIfTI file to DICOM conversion"
     )
 
-    parser.add_argument("input_file or path", type=str, help="[.nii/.nii.gz] input NIfTI file or path")
+    parser.add_argument("input_file", type=str, help="[.nii/.nii.gz] input NIfTI file or path")
     parser.add_argument("-o","--output_dir", type=str, help="[directory] output DICOM path")
     parser.add_argument("-d", "--dicom_type", type=str, default='MR',help="[string] type of DICOM. e.g. MR, CT, US, XR, etc. (Default: MR)")
     parser.add_argument("-rt", "--rt_structure", action='store_true', help="[string] in the case of the input file is RT structure")
