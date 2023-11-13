@@ -55,21 +55,10 @@ To install and run nii2dcm locally, you have two options:
 Clone this repo:
 ```sh
 git clone https://github.com/oncowonyoungcho/nii2dcm.git
-```
-
-Setup a Python virtual environment (recommended):
-```sh
 cd nii2dcm/
-python -m venv nii2dcm-venv
-source nii2dcm-venv/bin/activate
-python -m pip install --upgrade pip
-```
-
-Install dependencies and nii2dcm:
-```sh
 pip install setuptools wheel
 pip install -r requirements.txt
-pip install .
+pip install -e .
 ```
 
 Verify installation by displaying nii2dcm help information
@@ -92,19 +81,25 @@ Without this, a generic DICOM is created without complete imaging modality metad
 ### DicomMRI (default)
 Create an MRI 2D multi-slice DICOM dataset:
 ```sh
-nii2dcm nifti-file.nii.gz dicom-output-directory/ -d MR
+nii2dcm nifti-file.nii.gz dicom-output-directory -d MR
+or
+nii2dcm nifti-file.nii.gz dicom-output-directory
+or
+nii2dcm nifti-file.nii.gz # DICOM will be created in "nifti-file" directory.
 ```
 
 ### DicomCT
 Create an MRI 2D multi-slice DICOM dataset:
 ```sh
-nii2dcm nifti-file.nii.gz dicom-output-directory/ -d CT
+nii2dcm nifti-file.nii.gz dicom-output-directory -d CT
+or
+nii2dcm nifti-file.nii.gz -d CT
 ```
 
 ### DicomMRISVR
 Create an MRI 3D [SVR](https://svrtk.github.io/) DICOM dataset:
 ```sh
-nii2dcm SVR-output.nii.gz dicom-output-directory/ -d SVR
+nii2dcm SVR-output.nii.gz dicom-output-directory -d SVR
 ```
 
 ### Dicom
@@ -114,7 +109,7 @@ nii2dcm nifti-file.nii.gz dicom-output-directory/
 ```
 
 ### Other
-Eventually, nii2dcm will be extended to cover other imaging modalities including CT, Ultrasound, X-Ray, etc.
+Eventually, nii2dcm will be extended to cover other imaging modalities including Ultrasound, X-Ray, etc.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
