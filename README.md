@@ -12,6 +12,7 @@
     NIfTI to DICOM file creation with Python
     <br />
     <a href="https://github.com/tomaroberts/nii2dcm"><strong>Original Source Github »</strong></a>
+    /
     <a href="https://github.com/oncowonyoungcho/nii2dcm"><strong>Modified version »</strong></a>
     <br />
     <br />
