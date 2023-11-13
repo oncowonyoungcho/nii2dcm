@@ -50,9 +50,9 @@ nii2dcm nifti-file.nii.gz -o dicom-output-directory --dicom-type MR
 ## Installation
 
 To install and run nii2dcm locally, you have two options:
-- build from source
-
-### build from source
+```sh
+pip install nii2dcm
+```
 
 Clone this repo:
 ```sh
