@@ -105,7 +105,7 @@ nii2dcm nifti-file.nii.gz -o dicom-output-directory -d MR
 ```
 or
 ```sh
-nii2dcm nifti-file.nii.gz # nifti-file.nii.gz will be converted to "nifti-file" directory.
+nii2dcm nifti-file.nii.gz -d MR # nifti-file.nii.gz will be converted to a "nifti-file" directory.
 ```
 or
 ```sh
