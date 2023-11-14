@@ -42,7 +42,7 @@ def run_nii2dcm(input_nii_path, output_dcm_path, patient_name, dicom_type=None, 
 
     # initialise nii2dcm.dcm object
     # --dicom_type specified on command line
-    if dicom_type == 'None':
+    if dicom_type is None:
         dicom = nii2dcm.dcm.Dicom('nii2dcm_dicom.dcm')
 
     if dicom_type is not None and dicom_type.upper() in ['MR', 'MRI']:
