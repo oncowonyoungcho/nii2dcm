@@ -76,6 +76,9 @@ class Dicom:
         dateStr = dt.strftime('%Y%m%d')
         timeStr = dt.strftime('%H%M%S.%f')  # long format with micro seconds
 
+        self.ds.Modality  = 'CRI'
+        self.ds.SOPClassUID = '1.2.840.10008.5.1.4.1.1.1'
+        
         self.ds.ContentDate = dateStr
         self.ds.ContentTime = timeStr
         self.ds.StudyDate = dateStr
