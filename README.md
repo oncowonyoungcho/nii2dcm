@@ -98,7 +98,7 @@ options:
   -v, --version         show program's version number and exit
 ```
 
-### DicomMRI (default)
+### DicomMRI
 Create an MRI 2D multi-slice DICOM dataset:
 ```sh
 nii2dcm nifti-file.nii.gz -o dicom-output-directory -d MR
