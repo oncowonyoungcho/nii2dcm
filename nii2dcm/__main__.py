@@ -23,7 +23,7 @@ def cli(args=None):
 
     parser.add_argument("input_file", type=str, help="[.nii/.nii.gz] input NIfTI file or path")
     parser.add_argument("-o","--output_dir", type=str, help="[directory] output DICOM path")
-    parser.add_argument("-d", "--dicom_type", type=str, default='MR',help="[string] type of DICOM. e.g. MR, CT, US, XR, etc. (Default: MR)")
+    parser.add_argument("-d", "--dicom_type", type=str, default='MR',help="[string] type of DICOM. e.g. MR, CT, MR with SVR, etc.")
     parser.add_argument("-rt", "--rt_structure", action='store_true', help="[string] in the case of the input file is RT structure")
     parser.add_argument("-p", "--patient_name", type=str, help="[string] Patient name to be in DICOM file (Default: input file name)")
     parser.add_argument("-pid", "--patient_id", type=str, help="[string] Patient ID to be in DICOM file (Default: input file name)")
@@ -42,12 +42,11 @@ def cli(args=None):
             print(f"Input file '{input_file}' not found")
             raise SystemExit(1)
 
-    # Coding of optional file checks below is quite verbose
+    dicom_type = None
     if args.dicom_type is not None:
         dicom_type = args.dicom_type  # TODO: add check that supplied dicom_type is permitted
-    elif args.dicom_type is None:
-        dicom_type = None
 
+    
     if args.ref_dicom is not None:
         ref_dicom_file = Path(args.ref_dicom)   # TODO: add check that file is DICOM
     elif args.ref_dicom is None:
