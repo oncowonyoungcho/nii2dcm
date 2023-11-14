@@ -87,7 +87,7 @@ options:
   -o OUTPUT_DIR, --output_dir OUTPUT_DIR
                         [directory] output DICOM path
   -d DICOM_TYPE, --dicom_type DICOM_TYPE
-                        [string] type of DICOM. e.g. MR, CT, MRI with SVR. (Default: MR)
+                        [string] type of DICOM. e.g. MR, CT, MRI with SVR, etc.
   -rt, --rt_structure   [string] in the case of the input file is RT structure
   -p PATIENT_NAME, --patient_name PATIENT_NAME
                         [string] Patient name to be in DICOM file (Default: input file name)
@@ -105,15 +105,11 @@ nii2dcm nifti-file.nii.gz -o dicom-output-directory -d MR
 ```
 or
 ```sh
-nii2dcm nifti-file.nii.gz -o dicom-output-directory
-```
-or
-```sh
 nii2dcm nifti-file.nii.gz # nifti-file.nii.gz will be converted to "nifti-file" directory.
 ```
 or
 ```sh
-nii2dcm nifti-file-directory
+nii2dcm nifti-file-directory -d MR
 ```
 
 ### DicomCT
@@ -132,13 +128,13 @@ nii2dcm nifti-file-directory -d CT
 ### DicomMRISVR
 Create an MRI 3D [SVR](https://svrtk.github.io/) DICOM dataset:
 ```sh
-nii2dcm SVR-output.nii.gz dicom-output-directory -d SVR
+nii2dcm SVR-output.nii.gz -o dicom-output-directory -d SVR
 ```
 
 ### Dicom
 Create a generic DICOM dataset:
 ```sh
-nii2dcm nifti-file.nii.gz dicom-output-directory/
+nii2dcm nifti-file.nii.gz -o dicom-output-directory
 ```
 
 ### Other
