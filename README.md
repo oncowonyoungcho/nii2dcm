@@ -11,7 +11,7 @@
   <p align="center">
     Convert NIfTI to DICOM file with Python.
     <br />
-    The code is extended to CT and general DICOM with a 'Computed Radiography Image Storage' tag from original version.
+    The code is extended to CT and unknown type of DICOM.
     <br />
     <a href="https://github.com/tomaroberts/nii2dcm"><strong>Original Version » https://github.com/tomaroberts/nii2dcm</strong></a>
     <br /> - <br />
