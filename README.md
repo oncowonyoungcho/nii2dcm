@@ -11,8 +11,8 @@
   <p align="center">
     Convert NIfTI to DICOM file with Python.
     <br />
-    The code is extended to CT and unknown type of DICOM.
-    <br />
+    ( The code is extended to CT and unknown type of DICOM. )
+    <br />  <br />
     <a href="https://github.com/tomaroberts/nii2dcm"><strong>Original Version » https://github.com/tomaroberts/nii2dcm</strong></a>
     <br /> - <br />
     <a href="https://github.com/oncowonyoungcho/nii2dcm"><strong>Extended Version » https://github.com/oncowonyoungcho/nii2dcm</strong></a>
