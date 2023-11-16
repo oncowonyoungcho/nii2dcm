@@ -11,7 +11,8 @@
   <p align="center">
     Convert NIfTI to DICOM file with Python.
     <br />
-    ( The program is extended to CT and <a href="https://dicom.nema.org/dicom/2013/output/chtml/part03/sect_A.2.html">unknown type of DICOM</a>. )
+    https://dicom.nema.org/medical/Dicom/current/output/chtml/part03/sect_C.8.2.html
+    ( The program is extended to <a href="https://dicom.nema.org/medical/Dicom/current/output/chtml/part03/sect_C.8.2.html">CT</a> and <a href="https://dicom.nema.org/dicom/2013/output/chtml/part03/sect_A.2.html">unknown type of DICOM</a>. )
     <br />  <br />
     <a href="https://github.com/tomaroberts/nii2dcm"><strong>Original Version » https://github.com/tomaroberts/nii2dcm</strong></a>
     <br /> - <br />
