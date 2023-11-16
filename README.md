@@ -106,7 +106,11 @@ Create an 2D multi-slice DICOM dataset:
 nii2dcm [nifti-file.nii.gz, nifti-file-directory] -d [None, MR, CT, SVR] {-o dicom-output-directory}
 ```
 
-* Type: [unknown]{https://dicom.nema.org/medical/Dicom/current/output/chtml/part03/sect_C.8.html}, [CT]{https://dicom.nema.org/medical/Dicom/current/output/chtml/part03/sect_C.8.2.html}, [MR]{https://dicom.nema.org/medical/Dicom/current/output/chtml/part03/sect_C.8.3.html},  MR with [SVR](https://svrtk.github.io/).
+* Type
+[unknown]{https://dicom.nema.org/medical/Dicom/current/output/chtml/part03/sect_C.8.html}
+[CT]{https://dicom.nema.org/medical/Dicom/current/output/chtml/part03/sect_C.8.2.html}
+[MR]{https://dicom.nema.org/medical/Dicom/current/output/chtml/part03/sect_C.8.3.html}
+MR with [SVR](https://svrtk.github.io/).
 
 
 ### Other
