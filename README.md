@@ -90,7 +90,7 @@ options:
                         [directory] output DICOM path
   -d DICOM_TYPE, --dicom_type DICOM_TYPE
                         [string] type of DICOM. e.g. MR, CT, MRI with SVR, etc.
-  -rt, --rt_structure   [string] in the case of the input file is RT structure
+  -rt, --rt_structure   [string] input NIfTI file is RT structure
   -p PATIENT_NAME, --patient_name PATIENT_NAME
                         [string] Patient name to be in DICOM file (Default: input file name)
   -pid PATIENT_ID, --patient_id PATIENT_ID
