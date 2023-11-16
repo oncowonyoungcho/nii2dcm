@@ -100,44 +100,14 @@ options:
   -v, --version         show program's version number and exit
 ```
 
-### DicomMRI
-Create an MRI 2D multi-slice DICOM dataset:
-```sh
-nii2dcm nifti-file.nii.gz -o dicom-output-directory -d MR
-```
-or
-```sh
-nii2dcm nifti-file.nii.gz -d MR # nifti-file.nii.gz will be converted to a "nifti-file" directory.
-```
-or
-```sh
-nii2dcm nifti-file-directory -d MR
-```
-
-### DicomCT
-Create an MRI 2D multi-slice DICOM dataset:
-```sh
-nii2dcm nifti-file.nii.gz -o dicom-output-directory -d CT
-```
-or
-```sh
-nii2dcm nifti-file.nii.gz -d CT
-```
-or
-```sh
-nii2dcm nifti-file-directory -d CT
-```
-### DicomMRISVR
-Create an MRI 3D [SVR](https://svrtk.github.io/) DICOM dataset:
-```sh
-nii2dcm SVR-output.nii.gz -o dicom-output-directory -d SVR
-```
-
 ### Dicom
-Create a generic DICOM dataset:
+Create an 2D multi-slice DICOM dataset:
 ```sh
-nii2dcm nifti-file.nii.gz -o dicom-output-directory
+nii2dcm [nifti-file.nii.gz, nifti-file-directory] -d [None, MR, CT, SVR] {-o dicom-output-directory}
 ```
+
+* Type: [unknown]{https://dicom.nema.org/medical/Dicom/current/output/chtml/part03/sect_C.8.html}, [CT]{https://dicom.nema.org/medical/Dicom/current/output/chtml/part03/sect_C.8.2.html}, [MR]{https://dicom.nema.org/medical/Dicom/current/output/chtml/part03/sect_C.8.3.html},  MR with [SVR](https://svrtk.github.io/).
+
 
 ### Other
 Eventually, nii2dcm will be extended to cover other imaging modalities including Ultrasound, X-Ray, etc.
