@@ -18,7 +18,7 @@ from nii2dcm.dcm_writer import (
 import numpy as np
 
 
-def run_nii2dcm(input_nii_path, output_dcm_path, patient_name, dicom_type=None, ref_dicom_file=None, rtstructure=False):
+def run_nii2dcm(input_nii_path, output_dcm_path, patient_name, patient_id, dicom_type=None, ref_dicom_file=None, rtstructure=False):
     """
     Execute NIfTI to DICOM conversion
 
@@ -83,6 +83,6 @@ def run_nii2dcm(input_nii_path, output_dcm_path, patient_name, dicom_type=None, 
         transfer_nii_hdr_instance_tags(dicom, nii2dcm_parameters, instance_index)
 
         # Write slice
-        write_slice(dicom, nii_img, instance_index, output_dcm_path, input_nii_path.stem.split('.nii')[0], patient_name, rtstructure)
+        write_slice(dicom, nii_img, instance_index, output_dcm_path, input_nii_path.stem.split('.nii')[0], patient_name, patient_id, rtstructure)
 
     print(f'nii2dcm: DICOM files written to: {abspath(output_dcm_path)}')  # TODO use logger
