@@ -7,7 +7,7 @@ import pydicom as pyd
 from scipy.ndimage import rotate
 
 
-def write_slice(dcm, img_data, instance_index, output_dir, output_name, patient_name, rtstructure):
+def write_slice(dcm, img_data, instance_index, output_dir, output_name, patient_name, patient_id, rtstructure):
     """
     write a single DICOM slice
 
@@ -34,7 +34,7 @@ def write_slice(dcm, img_data, instance_index, output_dir, output_name, patient_
 
     # write DICOM file
     dcm.ds.PatientName = patient_name
-    dcm.ds.PatientID = output_name
+    dcm.ds.PatientID = patient_id
 
     if rtstructure:
         dcm.ds.Modality = 'RTSTRUCT'
