@@ -62,14 +62,20 @@ def cli(args=None):
             output_dir = Path(args.output_dir)
             
         if args.patient_name:
-            patient_name = args.patient_name.split('.nii')[0]
+            patient_name = args.patient_name
         else:
             patient_name = output_dir.stem.split('.nii')[0]
-
+            
+        if args.patient_id:
+            patient_name = args.patient_id
+        else:
+            patient_name = output_dir.stem.split('.nii')[0]
+            
         run_nii2dcm(
             fname,
             output_dir,
             patient_name,
+            patient_id,
             dicom_type,
             ref_dicom_file,
             args.rt_structure
