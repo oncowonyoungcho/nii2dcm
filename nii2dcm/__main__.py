@@ -67,9 +67,9 @@ def cli(args=None):
             patient_name = output_dir.stem.split('.nii')[0]
             
         if args.patient_id:
-            patient_name = args.patient_id
+            patient_id = args.patient_id
         else:
-            patient_name = output_dir.stem.split('.nii')[0]
+            patient_id = output_dir.stem.split('.nii')[0]
             
         run_nii2dcm(
             fname,
