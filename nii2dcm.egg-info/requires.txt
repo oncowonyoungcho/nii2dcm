@@ -1,6 +1,6 @@
-dunamai==1.18.0
-matplotlib==3.6.2
-nibabel==5.0.0
-numpy==1.23.2
-pydicom==2.3.0
-twine==4.0.2
+dunamai
+matplotlib
+nibabel
+numpy
+pydicom
+twine
